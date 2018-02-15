@@ -12,13 +12,24 @@ function geolocate() {
         console.log(forecast);
         console.log(forecast.currently.ozone);
         console.log(forecast.currently.temperature);
-        console.log(forecast.daily.summary);
+        let summary = forecast.daily.summary;
+        console.log(summary)
 
         let celcius = (forecast.currently.temperature - 32) * 5 / 9;
         console.log(celcius)
+
+        let temp = document.createElement('li');
+        temp.className = 'celciusTemp';
+        temp.innerText = celcius;
+        tempCont.appendChild(temp)
+
+        let summ = document.createElement('li');
+        summ.className = 'summary';
+        summ.innerText = summary;
+        tempCont.appendChild(summ)
       });
     }, function(error) {
-      alert('Tenemos un problema en encontrar tu ubicación');
+      alert('No encontramos tu ubicación');
     });
   }
 }
