@@ -1,6 +1,3 @@
-geolocate();
-
-// buscar la posición
 function geolocate() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
