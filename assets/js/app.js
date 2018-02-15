@@ -4,11 +4,11 @@ geolocate();
 function geolocate() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      pos = {
+      postn = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      $.getJSON('https://api.darksky.net/forecast/dee89d5e9210fc4bb4366e0d5ccc2d0a/' + pos.lat + ',' + pos.lng + '?extend=hourly&callback=?', function(forecast) {
+      $.getJSON('https://api.darksky.net/forecast/46de07ca6acb4c91b8431195a832b277/' + postn.lat + ',' + postn.lng + '?extend=hourly&callback=?', function(forecast) {
         console.log(forecast);
         console.log(forecast.currently.ozone);
         console.log(forecast.currently.temperature);
