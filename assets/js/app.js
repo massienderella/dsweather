@@ -54,8 +54,6 @@ function btnWeekFunction()  {
     let maxTemp = $('<p class="tempDaily">').html(`Mínima ${Math.floor(element.apparentTemperatureLow)}° - Máxima ${Math.floor(element.apparentTemperatureHigh)}°`);
     let dayCont = $('<div class="dayCont">');
     let dayIcon = '<canvas class="' + element.icon + ' icon-size"></canvas>';
-
-    console.log(element.icon);
     dayCont.append(dayIcon, eachDay, maxTemp, currentDay);
     cont.append(dayCont);
             
@@ -83,8 +81,6 @@ function btnDailyFunction() {
     });
   }
 }
-var today = moment().add(0, 'd').format('DD, MMMM')
-console.log(today);
 
 /* var icons = new Skycons({"color": "orange"});
 
