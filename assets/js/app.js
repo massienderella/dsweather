@@ -69,9 +69,9 @@ function btnWeekFunction()  {
 
 function btnDailyFunction() {
   cont.empty();
-  cont.append(todayTitle, iconTemperature, temperature, windSpeed, humidity, uvIndex, pressure, btnWeek);
+  cont.append(todayTitle, iconTemperature, temperature, windSpeed, humidity, uvIndex, pressure, weekForecast);
           
-    btnWeek.on('click', function()  {
+    weekForecast.on('click', function()  {
     btnWeekFunction();
           });
   }
