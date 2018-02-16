@@ -17,4 +17,15 @@ body {
 
 canvas{
   width: 60%;
+  height: auto;
+}
+
+.icon-size{
+  width: 20%;
+  height: auto;
+  float: left;
+}
+
+.dailyTitle{
+  text-align: center;
 }

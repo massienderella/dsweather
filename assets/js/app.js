@@ -30,7 +30,7 @@ $.getJSON('https://api.darksky.net/forecast/46de07ca6acb4c91b8431195a832b277/' +
   let humidity = $('<div class="extras">').html(`<p><span class="left-align">Humedad</span> <span class="right-align">${forecast.currently.humidity}  %</span></p>`);
   let uvIndex = $('<div class="extras">').html(`<p><span class="left-align">Índice UV</span> <span class="right-align">${forecast.currently.uvIndex}</span></p>`);
   let pressure = $('<div class="extras">').html(`<p><span class="left-align">Presión</span> <span class="right-align">${forecast.currently.pressure}  hPa</span></p>`);
-  let weekForecast = $('<a class="waves-effect waves-light btn">').text('¿Qué se viene para la semana?');
+  let weekForecast = $('<a class="waves-effect waves-light btn">').text('Ver pronóstico');
   cont.append(title, iconTemperature, temperature, windSpeed, humidity, uvIndex, pressure, weekForecast);
 
   weekForecast.on('click', function() {
@@ -51,7 +51,7 @@ function btnWeekFunction()  {
   forecast.daily.data.forEach(function(element) {
   counter++ //Itera sobre cada elemento, día en este caso, suma un día (si no le agrego el ++ no me suma un día)
     let eachDay = $('<p class="dailyTitle">').text(`${moment().add(counter, 'd').format('DD, MMMM')}`)
-    let maxTemp = $('<p class="tempDaily">').html(`Min ${Math.floor(element.apparentTemperatureLow)}° - Max ${Math.floor(element.apparentTemperatureHigh)}°`);
+    let maxTemp = $('<p class="tempDaily">').html(`Mínima ${Math.floor(element.apparentTemperatureLow)}° - Máxima ${Math.floor(element.apparentTemperatureHigh)}°`);
     let dayCont = $('<div class="dayCont">');
     let dayIcon = '<canvas class="' + element.icon + ' icon-size"></canvas>';
 
@@ -104,7 +104,7 @@ icons.play();*/
 function skycons() {
         var i,
             icons = new Skycons({
-                "color" : "#FFFFFF",
+                "color" : "yellow",
                 "resizeClear": true // nasty android hack
             }),
             list  = [ // listing of all possible icons
