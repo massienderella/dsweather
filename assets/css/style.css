@@ -1,9 +1,23 @@
-.welcome{
-  text-align: center;
-  font-weight: bold;
+
+body {
+  background: skyblue;
 }
 
-.celciusTemp{
-  text-align: center;
-  list-style: none;
+.row{
+  margin: 0;
+}
+
+.main{
+  background-color: rgba(0,0,0,0.3);
+  min-height: 100vh;
+  padding: 0;
+}
+
+.welcome{
+  margin-top: 0;
+  padding-top: 0%;
+}
+
+canvas{
+  width: 100%;
 }
