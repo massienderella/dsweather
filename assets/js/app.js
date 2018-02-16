@@ -22,6 +22,8 @@ $.getJSON('https://api.darksky.net/forecast/46de07ca6acb4c91b8431195a832b277/' +
   let cont = $('.weather-container');
   let skiconsCurrent = forecast.currently.icon;
 
+  let title = $('<h1 class="title">').text('Hoy')
+
   let iconTemperature = $('<canvas class="' + skiconsCurrent + '"></canvas>');
   let temperature = $('<h2 class="temperature">').text(`${Math.floor(forecast.currently.temperature)}°`);
   let windSpeed = $('<div class="extras">').html(`<p><span class="left-align">Viento</span> <span class="right-align">${forecast.currently.windSpeed}  m/s</span></p>`);
@@ -29,47 +31,50 @@ $.getJSON('https://api.darksky.net/forecast/46de07ca6acb4c91b8431195a832b277/' +
   let uvIndex = $('<div class="extras">').html(`<p><span class="left-align">Índice UV</span> <span class="right-align">${forecast.currently.uvIndex}</span></p>`);
   let pressure = $('<div class="extras">').html(`<p><span class="left-align">Presión</span> <span class="right-align">${forecast.currently.pressure}  hPa</span></p>`);
   let weekForecast = $('<a class="waves-effect waves-light btn">').text('¿Qué se viene para la semana?');
-  cont.append(iconTemperature, temperature, windSpeed, humidity, uvIndex, pressure, weekForecast);
+  cont.append(title, iconTemperature, temperature, windSpeed, humidity, uvIndex, pressure, weekForecast);
 
   weekForecast.on('click', function() {
     btnWeekFunction();
   });
 
-  let btnDaily = $('<button type="button" class="btn btn-style">').text('Volver');
-  btnDaily.on('click', function() {
+  let currentDay = $('<button type="button" class="btn btn-style">').text('Atrás');
+  currentDay.on('click', function() {
   btnDailyFunction();
   });
 
-
+//Obtener datos de próximos días desde la API, usando moment.js
 function btnWeekFunction()  {
   cont.empty();
+
   console.log(forecast.daily.data);
   let counter = -1;
-  forecast.daily.data.forEach(function(element) { //Itera sobre cada elemento, día en este caso
+  forecast.daily.data.forEach(function(element) {
+  counter++ //Itera sobre cada elemento, día en este caso, suma un día (si no le agrego el ++ no me suma un día)
     let eachDay = $('<p class="dailyTitle">').text(`${moment().add(counter, 'd').format('DD, MMMM')}`)
-    let dailyTempMax = $('<p class="tempDaily">').html(`Min ${Math.floor(element.apparentTemperatureLow)}° - Max ${Math.floor(element.apparentTemperatureHigh)}°`);
-    let dailyContainer = $('<div class="dailyContainer">');
-    let dailyIcon = '<canvas class="' + element.icon + ' icon-size"></canvas>';
+    let maxTemp = $('<p class="tempDaily">').html(`Min ${Math.floor(element.apparentTemperatureLow)}° - Max ${Math.floor(element.apparentTemperatureHigh)}°`);
+    let dayCont = $('<div class="dayCont">');
+    let dayIcon = '<canvas class="' + element.icon + ' icon-size"></canvas>';
 
     console.log(element.icon);
-    dailyContainer.append(dailyIcon, eachDay, dailyTempMax, btnDaily);
-    cont.append(dailyContainer);
+    dayCont.append(dayIcon, eachDay, maxTemp, currentDay);
+    cont.append(dayCont);
             
-    btnDaily.on('click', function() {
+    currentDay.on('click', function() {
       btnDailyFunction();
     });
 
   skycons();
   });
 }
-        function btnDailyFunction() {
-          cont.empty();
-          cont.append(todayTitle, iconTemperature, temperature, windSpeed, humidity, uvIndex, pressure, btnWeek);
+
+function btnDailyFunction() {
+  cont.empty();
+  cont.append(todayTitle, iconTemperature, temperature, windSpeed, humidity, uvIndex, pressure, btnWeek);
           
-          btnWeek.on('click', function()  {
-            btnWeekFunction();
+    btnWeek.on('click', function()  {
+    btnWeekFunction();
           });
-        }
+  }
         skycons();
       });
 
